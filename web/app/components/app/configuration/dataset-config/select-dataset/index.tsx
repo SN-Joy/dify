@@ -44,7 +44,7 @@ const SelectDataSet: FC<ISelectDataSetProps> = ({
   useInfiniteScroll(
     async () => {
       if (!isNoMore) {
-        const { data, has_more } = await fetchDatasets({ url: '/datasets', params: { page } })
+        const { data, has_more } = await fetchDatasets({ url: '/datasets', params: { page: getPage() } })
         setPage(getPage() + 1)
         setIsNoMore(!has_more)
         const newList = [...(datasets || []), ...data.filter(item => item.indexing_technique || item.provider === 'external')]
